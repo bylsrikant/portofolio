@@ -4,411 +4,841 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Srikant | Video Editor</title>
+<meta name="theme-color" content="#080b12">
+<title>Srikant Edit | Video Editor</title>
+<meta name="description" content="Srikant - Professional Video Editor with 3 years of experience. Explore my educational videos, creative edits and motion graphics.">
 
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  scroll-behavior: smooth;
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #080b12;
+  --panel: #101622;
+  --text: #f5f7ff;
+  --muted: #9ba7bb;
+  --blue: #38bdf8;
+  --orange: #ff8a35;
+  --border: rgba(255,255,255,.10);
 }
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
 
 body {
-  background: #080b12;
-  color: #f5f5f5;
-  font-family: Arial, sans-serif;
-  line-height: 1.6;
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
 }
 
+a { color:inherit; text-decoration:none; }
+
 .container {
-  width: 88%;
-  max-width: 1100px;
-  margin: auto;
+  width:min(1120px,90%);
+  margin:auto;
+}
+
+header {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  z-index:100;
+  background:rgba(8,11,18,.86);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid var(--border);
 }
 
 nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 0;
+  height:76px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
 .logo {
-  font-size: 25px;
-  font-weight: bold;
-  color: #a78bfa;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:23px;
+  font-weight:700;
+  letter-spacing:-1px;
 }
 
-nav a {
-  color: white;
-  text-decoration: none;
-  margin-left: 22px;
-  font-size: 14px;
+.logo span { color:var(--blue); }
+
+.nav-links {
+  display:flex;
+  align-items:center;
+  gap:30px;
 }
 
-nav a:hover {
-  color: #a78bfa;
+.nav-links a {
+  font-size:13px;
+  color:var(--muted);
+  transition:.3s;
+}
+
+.nav-links a:hover { color:var(--blue); }
+
+.menu-btn {
+  display:none;
+  background:none;
+  border:0;
+  color:white;
+  font-size:26px;
+  cursor:pointer;
 }
 
 .hero {
-  min-height: 570px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 80px 0;
+  min-height:760px;
+  padding:170px 0 100px;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before {
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:rgba(56,189,248,.13);
+  filter:blur(120px);
+  border-radius:50%;
+  right:-100px;
+  top:100px;
+}
+
+.hero:after {
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  background:rgba(255,138,53,.09);
+  filter:blur(100px);
+  border-radius:50%;
+  left:-100px;
+  bottom:20px;
+}
+
+.hero-content {
+  position:relative;
+  z-index:2;
+  max-width:780px;
 }
 
 .tag {
-  color: #a78bfa;
-  letter-spacing: 3px;
-  font-size: 13px;
-  margin-bottom: 20px;
+  display:inline-flex;
+  padding:9px 16px;
+  border:1px solid rgba(56,189,248,.35);
+  border-radius:30px;
+  color:var(--blue);
+  font-size:12px;
+  letter-spacing:1px;
+  margin-bottom:28px;
+  background:rgba(56,189,248,.06);
 }
 
 .hero h1 {
-  font-size: clamp(42px, 7vw, 75px);
-  line-height: 1.1;
-  max-width: 850px;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(48px,8vw,88px);
+  line-height:1.05;
+  letter-spacing:-4px;
+  margin-bottom:22px;
 }
 
-.hero h1 span {
-  color: #a78bfa;
+.gradient {
+  background:linear-gradient(90deg,var(--blue),#a78bfa,var(--orange));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
 }
 
 .hero p {
-  color: #a5a5b2;
-  max-width: 600px;
-  margin: 25px 0;
-  font-size: 17px;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.8;
+  max-width:590px;
+  margin-bottom:34px;
+}
+
+.buttons {
+  display:flex;
+  flex-wrap:wrap;
+  gap:14px;
 }
 
 .btn {
-  display: inline-block;
-  background: #8b5cf6;
-  color: white;
-  padding: 13px 25px;
-  border-radius: 7px;
-  text-decoration: none;
-  font-weight: bold;
-  margin-right: 10px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:14px 24px;
+  border-radius:9px;
+  font-size:14px;
+  font-weight:700;
+  transition:.3s;
 }
 
-.btn:hover {
-  background: #7042d8;
+.btn-primary {
+  background:var(--blue);
+  color:#06111c;
+}
+
+.btn-primary:hover {
+  background:white;
+  transform:translateY(-3px);
 }
 
 .btn-outline {
-  background: transparent;
-  border: 1px solid #8b5cf6;
+  border:1px solid var(--border);
+  color:white;
 }
 
-section {
-  padding: 80px 0;
-}
-
-.section-title {
-  font-size: 35px;
-  margin-bottom: 15px;
-}
-
-.subtitle {
-  color: #9999a8;
-  margin-bottom: 35px;
-}
-
-.about-box, .project, .skill {
-  background: #111623;
-  border: 1px solid #242b3b;
-  border-radius: 12px;
-  padding: 25px;
-}
-
-.about-box p {
-  color: #b0b2c0;
+.btn-outline:hover {
+  border-color:var(--blue);
+  color:var(--blue);
 }
 
 .stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-top: 25px;
+  display:flex;
+  gap:55px;
+  margin-top:65px;
+  flex-wrap:wrap;
 }
 
-.stat strong {
-  display: block;
-  color: #a78bfa;
-  font-size: 27px;
+.stat h3 {
+  font-size:30px;
+  font-family:'Space Grotesk',sans-serif;
 }
 
-.stat span {
-  color: #9999a8;
-  font-size: 13px;
+.stat p {
+  font-size:12px;
+  margin:4px 0 0;
 }
 
-.projects {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+section { padding:100px 0; }
+
+.section-heading {
+  margin-bottom:45px;
+}
+
+.section-heading .small {
+  color:var(--blue);
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:3px;
+  margin-bottom:12px;
+}
+
+.section-heading h2 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(32px,5vw,48px);
+  letter-spacing:-1.5px;
+}
+
+.section-heading p {
+  color:var(--muted);
+  margin-top:12px;
+  line-height:1.7;
+}
+
+.about-grid {
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:50px;
+  align-items:center;
+}
+
+.about-text h3 {
+  font-size:27px;
+  line-height:1.4;
+  margin-bottom:20px;
+}
+
+.about-text p {
+  color:var(--muted);
+  line-height:1.9;
+  margin-bottom:17px;
+}
+
+.about-card {
+  background:linear-gradient(145deg,#131e30,#10131d);
+  border:1px solid var(--border);
+  padding:35px;
+  border-radius:18px;
+}
+
+.about-card .symbol {
+  font-size:55px;
+  margin-bottom:20px;
+}
+
+.about-card h3 {
+  font-size:25px;
+  margin-bottom:12px;
+}
+
+.about-card p {
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.portfolio {
+  background:#0b1019;
+}
+
+.project-grid {
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:25px;
 }
 
 .project {
-  text-align: center;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:15px;
+  overflow:hidden;
+  transition:.3s;
 }
 
-.project-icon {
-  background: #25203d;
-  border-radius: 9px;
-  padding: 40px 10px;
-  font-size: 38px;
-  margin-bottom: 20px;
+.project:hover {
+  transform:translateY(-7px);
+  border-color:rgba(56,189,248,.5);
 }
 
-.project p {
-  color: #9999a8;
-  font-size: 14px;
-  margin: 10px 0 18px;
+.video-box {
+  background:#05080e;
+  aspect-ratio:16/9;
+  position:relative;
 }
 
-.project a {
-  color: #b49aff;
-  text-decoration: none;
+.video-box video {
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
 }
 
-.skills {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
+.video-box video:focus {
+  outline:2px solid var(--blue);
+}
+
+.project-info { padding:22px; }
+
+.project-info .category {
+  color:var(--blue);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+}
+
+.project-info h3 {
+  font-size:20px;
+  margin:10px 0;
+}
+
+.project-info p {
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.6;
+}
+
+.skills-grid {
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px;
 }
 
 .skill {
-  color: #d8c9ff;
-  text-align: center;
-  font-weight: bold;
+  padding:25px 17px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:12px;
+  text-align:center;
+  transition:.3s;
+}
+
+.skill:hover {
+  border-color:var(--blue);
+  transform:translateY(-5px);
+}
+
+.skill .emoji {
+  font-size:30px;
+  margin-bottom:14px;
+}
+
+.skill h3 { font-size:14px; }
+
+.experience {
+  background:linear-gradient(120deg,#101e30,#10131d);
+  border:1px solid var(--border);
+  padding:55px 35px;
+  border-radius:18px;
+  text-align:center;
+}
+
+.experience h2 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(30px,5vw,48px);
+  margin-bottom:15px;
+}
+
+.experience p {
+  color:var(--muted);
+  line-height:1.8;
+}
+
+.contact {
+  background:#0b1019;
 }
 
 .contact-box {
-  background: linear-gradient(135deg, #21183c, #111623);
-  padding: 40px;
-  border-radius: 15px;
-  text-align: center;
+  border:1px solid var(--border);
+  background:linear-gradient(145deg,#121c2b,#10131c);
+  border-radius:20px;
+  padding:50px;
+  text-align:center;
 }
 
-.contact-box p {
-  color: #b0b2c0;
-  margin: 15px 0 25px;
+.contact-box h2 {
+  font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(32px,5vw,48px);
+  margin-bottom:16px;
 }
 
-.contact-links {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 12px;
+.contact-box > p {
+  color:var(--muted);
+  line-height:1.8;
+  margin-bottom:30px;
+}
+
+.contact-details {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:16px;
+  margin-bottom:30px;
+}
+
+.contact-item {
+  padding:15px 20px;
+  background:rgba(255,255,255,.04);
+  border:1px solid var(--border);
+  border-radius:10px;
+  font-size:13px;
+}
+
+.contact-item span {
+  display:block;
+  color:var(--muted);
+  margin-bottom:5px;
 }
 
 footer {
-  text-align: center;
-  padding: 30px;
-  color: #777;
-  border-top: 1px solid #242b3b;
+  padding:30px 0;
+  text-align:center;
+  border-top:1px solid var(--border);
 }
 
-@media(max-width: 700px) {
-  nav {
-    flex-direction: column;
-    gap: 18px;
+footer p {
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.8;
+}
+
+footer strong { color:white; }
+
+.reveal {
+  opacity:0;
+  transform:translateY(25px);
+  transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.show {
+  opacity:1;
+  transform:translateY(0);
+}
+
+@media(max-width:800px) {
+  .nav-links {
+    display:none;
+    position:absolute;
+    top:76px;
+    left:0;
+    width:100%;
+    background:#0b1019;
+    padding:25px;
+    flex-direction:column;
+    gap:23px;
+    border-bottom:1px solid var(--border);
   }
 
-  nav a {
-    margin: 0 7px;
-    font-size: 12px;
-  }
+  .nav-links.active { display:flex; }
+  .menu-btn { display:block; }
+  .about-grid { grid-template-columns:1fr; }
+  .skills-grid { grid-template-columns:repeat(2,1fr); }
+}
 
-  .projects, .skills {
-    grid-template-columns: 1fr;
-  }
-
-  .stats {
-    grid-template-columns: 1fr;
-  }
-
-  .hero {
-    min-height: 450px;
-  }
-
-  .section-title {
-    font-size: 29px;
-  }
-
-  .contact-box {
-    padding: 25px 15px;
-  }
+@media(max-width:550px) {
+  .hero { min-height:690px; padding-top:140px; }
+  .hero h1 { letter-spacing:-2px; }
+  .stats { gap:28px; }
+  .project-grid { grid-template-columns:1fr; }
+  .contact-box { padding:35px 18px; }
+  section { padding:75px 0; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<header>
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">SRIKANT<span>.</span>EDIT</a>
 
-<nav>
-  <div class="logo">SRIKANT.</div>
-  <div>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#contact">Contact</a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#portfolio">Portfolio</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+    </nav>
   </div>
-</nav>
+</header>
 
+<main>
+
+<!-- HERO SECTION -->
 <section class="hero" id="home">
-  <div class="tag">VIDEO EDITOR & CREATIVE STORYTELLER</div>
+  <div class="container">
+    <div class="hero-content reveal">
+      <div class="tag">✦ VIDEO EDITOR & CREATIVE STORYTELLER</div>
 
-  <h1>
-    Turning Ideas Into
-    <span>Visual Stories.</span>
-  </h1>
+      <h1>
+        I CREATE<br>
+        <span class="gradient">VISUAL STORIES.</span>
+      </h1>
 
-  <p>
-    Hello, I'm Srikant, a passionate video editor from Odisha
-    with 3 years of experience. I create engaging videos
-    that capture attention and bring ideas to life.
-  </p>
+      <p>
+        Hey, I'm Srikant. A passionate video editor with
+        3 years of editing experience. I transform raw footage
+        into engaging and creative visual experiences.
+      </p>
 
-  <div>
-    <a href="#work" class="btn">Explore My Work ↗</a>
-    <a href="#contact" class="btn btn-outline">Contact Me</a>
+      <div class="buttons">
+        <a href="#portfolio" class="btn btn-primary">Explore My Work ↗</a>
+        <a href="#contact" class="btn btn-outline">Let's Connect</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <h3>03+</h3>
+          <p>Years Experience</p>
+        </div>
+        <div class="stat">
+          <h3>100%</h3>
+          <p>Creative Passion</p>
+        </div>
+        <div class="stat">
+          <h3>24/7</h3>
+          <p>Creative Mindset</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
+<!-- ABOUT SECTION -->
 <section id="about">
-  <h2 class="section-title">About Me.</h2>
-  <p class="subtitle">A little introduction about myself.</p>
+  <div class="container">
+    <div class="section-heading reveal">
+      <div class="small">01 / ABOUT ME</div>
+      <h2>Meet The Editor Behind The Frames.</h2>
+    </div>
 
-  <div class="about-box">
-    <p>
-      My name is Srikant, and I'm from Odisha, India.
-      I'm currently a Computer Science student and a
-      passionate video editor with 3 years of experience.
-      I currently work with a coaching institute, creating
-      and editing educational content.
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <h3>
+          Turning imagination into
+          <span class="gradient">visual reality.</span>
+        </h3>
 
-      I enjoy transforming raw footage into engaging,
-      professional and visually appealing videos.
-      My goal is to create content that tells a story
-      and connects with its audience.
-    </p>
+        <p>
+          I'm Srikant, a passionate video editor with
+          3 years of experience in creating engaging
+          and visually appealing content.
+        </p>
 
-    <div class="stats">
-      <div class="stat">
-        <strong>3+</strong>
-        <span>Years Experience</span>
+        <p>
+          I enjoy transforming ordinary footage into
+          meaningful stories through editing, transitions,
+          motion graphics and creative storytelling.
+        </p>
+
+        <p>
+          My goal is to create videos that capture attention,
+          communicate ideas and leave a lasting impression.
+        </p>
+
+        <a href="#contact" class="btn btn-primary">Work With Me ↗</a>
       </div>
 
-      <div class="stat">
-        <strong>Video</strong>
-        <span>Editing & Creation</span>
-      </div>
-
-      <div class="stat">
-        <strong>100%</strong>
-        <span>Creative Passion</span>
+      <div class="about-card reveal">
+        <div class="symbol">🎬</div>
+        <h3>Creative Vision.</h3>
+        <p>
+          Every frame matters. Every transition has a purpose.
+          Every video tells a story.
+        </p>
       </div>
     </div>
   </div>
 </section>
 
-<section id="work">
-  <h2 class="section-title">My Creative Work.</h2>
-  <p class="subtitle">
-    A selection of my video editing projects.
-  </p>
-
-  <div class="projects">
-
-    <div class="project">
-      <div class="project-icon">▶</div>
-      <h3>Educational Videos</h3>
-      <p>Engaging educational and coaching content.</p>
-      <a href="https://wa.me/918917321527">
-        Ask for Project ↗
-      </a>
+<!-- PORTFOLIO SECTION -->
+<section class="portfolio" id="portfolio">
+  <div class="container">
+    <div class="section-heading reveal">
+      <div class="small">02 / SELECTED WORK</div>
+      <h2>My Creative Portfolio.</h2>
+      <p>A collection of my educational and creative video projects.</p>
     </div>
 
-    <div class="project">
-      <div class="project-icon">🎬</div>
-      <h3>Creative Reels</h3>
-      <p>Short-form videos, fast cuts and transitions.</p>
-      <a href="https://wa.me/918917321527">
-        Ask for Project ↗
-      </a>
-    </div>
+    <div class="project-grid">
 
-    <div class="project">
-      <div class="project-icon">✨</div>
-      <h3>Motion & Effects</h3>
-      <p>Creative effects, animation and visual storytelling.</p>
-      <a href="https://wa.me/918917321527">
-        Ask for Project ↗
-      </a>
-    </div>
+      <!-- VIDEO 1 -->
+      <article class="project reveal">
+        <div class="video-box">
+          <video controls preload="metadata"
+            poster="images/thumbnail-1.jpg">
+            <source src="videos/educational-1.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div class="project-info">
+          <div class="category">EDUCATIONAL VIDEO</div>
+          <h3>Educational Video Editing</h3>
+          <p>Engaging educational content with clean cuts and storytelling.</p>
+        </div>
+      </article>
 
+      <!-- VIDEO 2 -->
+      <article class="project reveal">
+        <div class="video-box">
+          <video controls preload="metadata"
+            poster="images/thumbnail-2.jpg">
+            <source src="videos/educational-2.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div class="project-info">
+          <div class="category">CREATIVE EDITING</div>
+          <h3>Creative Video Project</h3>
+          <p>Creative editing with attractive transitions and visual flow.</p>
+        </div>
+      </article>
+
+      <!-- VIDEO 3 -->
+      <article class="project reveal">
+        <div class="video-box">
+          <video controls preload="metadata"
+            poster="images/thumbnail-3.jpg">
+            <source src="videos/motion-graphics.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div class="project-info">
+          <div class="category">MOTION GRAPHICS</div>
+          <h3>Motion & Visual Effects</h3>
+          <p>Dynamic motion graphics and creative visual elements.</p>
+        </div>
+      </article>
+
+      <!-- VIDEO 4 -->
+      <article class="project reveal">
+        <div class="video-box">
+          <video controls preload="metadata"
+            poster="images/thumbnail-4.jpg">
+            <source src="videos/creative-reel.mp4" type="video/mp4">
+            Your browser does not support video playback.
+          </video>
+        </div>
+        <div class="project-info">
+          <div class="category">SHORT FORM CONTENT</div>
+          <h3>Creative Reels</h3>
+          <p>Short-form content designed to communicate ideas effectively.</p>
+        </div>
+      </article>
+
+    </div>
   </div>
 </section>
 
+<!-- SKILLS SECTION -->
 <section id="skills">
-  <h2 class="section-title">My Skills.</h2>
-  <p class="subtitle">What I bring to every project.</p>
-
-  <div class="skills">
-    <div class="skill">Video Editing</div>
-    <div class="skill">Motion Graphics</div>
-    <div class="skill">Color Grading</div>
-    <div class="skill">Sound Design</div>
-    <div class="skill">Transitions & Effects</div>
-    <div class="skill">Storytelling</div>
-  </div>
-</section>
-
-<section id="contact">
-  <div class="contact-box">
-    <h2 class="section-title">Let's Work Together.</h2>
-
-    <p>
-      Have a project in mind? Let's create something
-      amazing together. Feel free to contact me.
-    </p>
-
-    <div class="contact-links">
-      <a class="btn"
-         href="https://wa.me/918917321527"
-         target="_blank">WhatsApp Me</a>
-
-      <a class="btn btn-outline"
-         href="mailto:bylsrikant@gmail.com">
-         Send Email
-      </a>
+  <div class="container">
+    <div class="section-heading reveal">
+      <div class="small">03 / WHAT I DO</div>
+      <h2>My Creative Skills.</h2>
+      <p>My areas of interest and editing expertise.</p>
     </div>
 
-    <p>
-      Phone: 8917321527<br>
-      Email: bylsrikant@gmail.com<br>
-      Location: Odisha, India
-    </p>
+    <div class="skills-grid">
+      <div class="skill reveal">
+        <div class="emoji">🎬</div>
+        <h3>Video Editing</h3>
+      </div>
+
+      <div class="skill reveal">
+        <div class="emoji">✨</div>
+        <h3>Motion Graphics</h3>
+      </div>
+
+      <div class="skill reveal">
+        <div class="emoji">⚡</div>
+        <h3>Transitions</h3>
+      </div>
+
+      <div class="skill reveal">
+        <div class="emoji">🎯</div>
+        <h3>Speed Ramping</h3>
+      </div>
+
+      <div class="skill reveal">
+        <div class="emoji">🎨</div>
+        <h3>Visual Effects</h3>
+      </div>
+
+      <div class="skill reveal">
+        <div class="emoji">🎵</div>
+        <h3>Audio Sync</h3>
+      </div>
+
+      <div class="skill reveal">
+        <div class="emoji">📖</div>
+        <h3>Storytelling</h3>
+      </div>
+
+      <div class="skill reveal">
+        <div class="emoji">🎞️</div>
+        <h3>Cinematic Editing</h3>
+      </div>
+    </div>
   </div>
 </section>
-  <div class="video-card">
-    <h3>My New Educational Video</h3>
 
-    <video width="100%" controls preload="metadata">
-        <source src="portfolio.mp4" type="video/mp4">
-        Your browser does not support video.
-    </video>
+<!-- EXPERIENCE SECTION -->
+<section>
+  <div class="container">
+    <div class="experience reveal">
+      <div class="section-heading">
+        <div class="small">04 / EXPERIENCE</div>
+      </div>
+      <h2>3 Years of Creative Experience.</h2>
+      <p>
+        Passion, consistency and creativity are at the
+        heart of everything I create.
+      </p>
+    </div>
+  </div>
+</section>
 
+<!-- CONTACT SECTION -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-box reveal">
+      <div class="section-heading">
+        <div class="small">05 / GET IN TOUCH</div>
+      </div>
+
+      <h2>Let's Create Something <span class="gradient">Amazing.</span></h2>
+
+      <p>
+        Have an idea or a video project?
+        Let's connect and bring your vision to life.
+      </p>
+
+      <div class="contact-details">
+        <div class="contact-item">
+          <span>EMAIL</span>
+          bylsrikant@gmail.com
+        </div>
+
+        <div class="contact-item">
+          <span>PHONE / WHATSAPP</span>
+          +91 8917321527
+        </div>
+      </div>
+
+      <div class="buttons" style="justify-content:center">
+        <a class="btn btn-primary"
+           href="https://wa.me/918917321527"
+           target="_blank" rel="noopener">
+          WhatsApp Me ↗
+        </a>
+
+        <a class="btn btn-outline"
+           href="mailto:bylsrikant@gmail.com">
+          Send Email ↗
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
 <footer>
-  © 2026 Srikant. All Rights Reserved.
-  <br>Designed with creativity.
+  <div class="container">
+    <p>
+      <strong>SRIKANT EDIT</strong> · Video Editor<br>
+      Creating Stories, One Frame at a Time.<br>
+      © <span id="year"></span> Srikant. All Rights Reserved.
+    </p>
+  </div>
 </footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  menuBtn.textContent =
+    navLinks.classList.contains("active") ? "✕" : "☰";
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    menuBtn.textContent = "☰";
+  });
+});
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("show");
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll(".reveal").forEach(el => {
+  observer.observe(el);
+});
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+</script>
 
 </body>
 </html>
+
